@@ -60,4 +60,17 @@ function liked(id){return localStorage.getItem('like-'+id)==='1'}
 function render(){['animals','nature','tehran'].forEach(cat=>{const target=document.getElementById('gallery-'+cat);target.innerHTML='';items.forEach((it,i)=>{if(it.category!==cat)return;const c=document.createElement('article');c.className='card';c.innerHTML=`<img src="${it.data}" alt="${it.title}" loading="lazy"><div class="cardbody"><h3>${it.title}</h3><p>${it.desc}</p><div class="actions"><button class="like ${liked(i)?'liked':''}" data-id="${i}">${liked(i)?'♥ پسندیده شد':'♡ پسندیدن'}</button><small>گالری سعید</small></div></div>`;c.querySelector('img').onclick=()=>openImg(it.data);c.querySelector('.like').onclick=()=>{localStorage.setItem('like-'+i,liked(i)?'0':'1');render()};target.appendChild(c)})})}
 function openImg(src){document.getElementById('large').src=src;document.getElementById('lightbox').classList.add('show')}
 document.getElementById('close').onclick=()=>document.getElementById('lightbox').classList.remove('show');document.getElementById('lightbox').onclick=e=>{if(e.target.id==='lightbox')e.currentTarget.classList.remove('show')};document.addEventListener('keydown',e=>{if(e.key==='Escape')document.getElementById('lightbox').classList.remove('show')});render();
-</script></body></html>
+</script> <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+const SUPABASE_URL = "https://euadbvsqugwfjndptpxa.supabase.co";
+
+const SUPABASE_KEY = "کلید Publishable خودت";
+
+const supabaseClient = window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
+</script>
+</body></html>
